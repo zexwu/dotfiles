@@ -1,0 +1,7 @@
+[manager]
+ratio = [1, 2, 5]
+sort_by = "extension"
+linemode = "mtime"
+[preview]
+max_width = 5000
+max_height = 5000

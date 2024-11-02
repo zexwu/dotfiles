@@ -1,0 +1,11 @@
+fork = true
+frame = "transparent"
+title-hidden = true
+maximized = true
+log = false
+idle = true
+neovim-bin = "/Users/zexwu/software/nvim-macos/bin/nvim"
+no-multigrid = false
+srgb = false
+tabs = true
+theme = "auto"

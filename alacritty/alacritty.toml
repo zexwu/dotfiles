@@ -1,0 +1,73 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding.x = 10
+padding.y = 10
+
+decorations = "Buttonless"
+
+opacity = 0.8
+blur = true
+option_as_alt = "Both"
+startup_mode = "Maximized"
+
+[font]
+normal = { family = "FiraCode Nerd Font", style = "Light" }
+bold = { family = "FiraCode Nerd Font", style = "Medium" }
+# italic = { family = "FiraCode Nerd Font", style = "Italic" }
+size = 17
+
+[selection]
+save_to_clipboard = true
+
+# [schemes]
+# [schemes.tokyo-night.bright]
+# black = "#444b6a"
+# blue = "#7da6ff"
+# cyan = "#0db9d7"
+# green = "#b9f27c"
+# magenta = "#bb9af7"
+# red = "#ff7a93"
+# white = "#acb0d0"
+# yellow = "#ff9e64"
+
+# [schemes.tokyo-night.normal]
+# black = "#32344a"
+# blue = "#7aa2f7"
+# cyan = "#449dab"
+# green = "#9ece6a"
+# magenta = "#ad8ee6"
+# red = "#f7768e"
+# white = "#787c99"
+# yellow = "#e0af68"
+#
+# [schemes.tokyo-night.primary]
+# background = "#1a1b26"
+# foreground = "#a9b1d6"
+
+[colors.bright]
+black = "#444b6a"
+blue = "#7da6ff"
+cyan = "#0db9d7"
+green = "#b9f27c"
+magenta = "#bb9af7"
+red = "#ff7a93"
+white = "#acb0d0"
+yellow = "#ff9e64"
+
+[colors.normal]
+black = "#32344a"
+blue = "#7aa2f7"
+cyan = "#7aa2f7"
+green = "#9ece6a"
+magenta = "#ad8ee6"
+red = "#f7768e"
+white = "#9699a8"
+yellow = "#e0af68"
+
+
+[colors.primary]
+background = "#000000"
+foreground = "#a9b1d6"
+# foreground = "#CCCCFF"

@@ -1,0 +1,58 @@
+[colors]
+# background = "#24283b"
+background = "#000000"
+foreground = "#a9b1d6"
+# foreground = "#c0caf5"
+# background = "#24283b"
+cursor_bg = "#c0caf5"
+cursor_border = "#c0caf5"
+cursor_fg = "#24283b"
+selection_bg = "#2e3c64"
+selection_fg = "#c0caf5"
+split = "#7aa2f7"
+compose_cursor = "#ff9e64"
+scrollbar_thumb = "#292e42"
+
+ansi = ["#32344a", "#f7768e", "#9ece6a", "#e0af68", "#7aa2f7", "#ad8ee6", "#7aa2f7", "#9699a8"]
+brights = ["#444b6a", "#f77a93", "#b9f27c", "#ff9e64", "#7aa2f7", "#bb9af7", "#7aa2f7", "#acb0d0"]
+
+[colors.tab_bar]
+# inactive_tab_edge = "#1f2335"
+# background = "#24283b"
+background = "rgba(0,0,0,0)"
+inactive_tab_edge = "rgba(0,0,0,0)"
+
+[colors.tab_bar.active_tab]
+# fg_color = "#1f2335"
+# bg_color = "#7aa2f7"
+# fg_color = "#7aa2f7"
+fg_color = "#a9b1d6"
+bg_color = "rgba(0,0,0,0)"
+intensity = "Bold"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#545c7e"
+bg_color = "rgba(0,0,0,0)"
+# bg_color = "#292e42"
+
+[colors.tab_bar.inactive_tab_hover]
+# fg_color = "#7aa2f7"
+fg_color = "#a9b1d6"
+bg_color = "rgba(0,0,0,0)"
+intensity = "Bold"
+
+[colors.tab_bar.new_tab_hover]
+# fg_color = "#7aa2f7"
+fg_color = "#a9b1d6"
+bg_color = "rgba(0,0,0,0)"
+intensity = "Bold"
+
+[colors.tab_bar.new_tab]
+# fg_color = "#7aa2f7"
+fg_color = "#a9b1d6"
+bg_color = "rgba(0,0,0,0)"
+
+[metadata]
+aliases = []
+author = "folke"
+name = "tokyonight_storm"

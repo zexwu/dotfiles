@@ -1,0 +1,13 @@
+proxies:
+- name: 'Balance: 20.00 GB'
+  port: 10086
+  server: 127.0.0.1
+  type: socks5
+- name: 'Telegram group: @wallesspku'
+  port: 10086
+  server: 127.0.0.1
+  type: socks5
+- name: "\u611F\u8C22 olink \u8D5E\u52A9\u4E00\u53F0\u72EC\u7ACB\u670D\u52A1\u5668!"
+  port: 10086
+  server: 127.0.0.1
+  type: socks5

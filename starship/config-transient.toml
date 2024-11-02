@@ -18,9 +18,10 @@ vimcmd_replace_one_symbol = ""
 disabled = true
 
 [directory]
+format = "[>](green) [$path](cyan)"
 truncation_length = 3
 truncation_symbol = '.../'
-format = "[>](green) [$path](cyan)"
+fish_style_pwd_dir_length = 1
 
 [conda]
 disabled = true

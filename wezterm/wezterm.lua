@@ -5,8 +5,8 @@ local Config = require('config')
 -- require('events.new-tab-button').setup()
 -- require('events.right-status').setup()
 -- require('events.left-status').setup()
-require('events.rr').setup()
-require('events.title').setup()
+-- require('events.rr').setup()
+-- require('events.title').setup()
 -- require('events.tabbar')
 
 

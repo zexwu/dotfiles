@@ -19,7 +19,7 @@ vimcmd_replace_one_symbol = "[<](bold purple)"
 disabled = true
 
 [fill]
-symbol = "-"
+symbol = " "
 style = "black dimmed"
 
 [localip]

@@ -15,7 +15,7 @@ startup_mode = "Maximized"
 [font]
 normal = { family = "FiraCode Nerd Font", style = "Light" }
 bold = { family = "FiraCode Nerd Font", style = "Medium" }
-# italic = { family = "FiraCode Nerd Font", style = "Italic" }
+italic = { family = "Menlo", style = "Italic" }
 size = 17
 
 [selection]

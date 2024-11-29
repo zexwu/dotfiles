@@ -17,7 +17,7 @@ return {
 			source = { Color = colors.background },
 			height = "100%",
 			width = "100%",
-			opacity = 0.8,
+			opacity = 0.85,
 		},
 	},
 
@@ -25,7 +25,7 @@ return {
 	enable_scroll_bar = true,
 
 	-- tab bar
-	enable_tab_bar = true,
+	enable_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = false,
 	use_fancy_tab_bar = false,
 	tab_max_width = 50,

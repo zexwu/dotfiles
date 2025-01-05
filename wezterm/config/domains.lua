@@ -6,6 +6,7 @@ return {
 			remote_address = "162.105.156.33",
 			username = "vlti",
 			remote_wezterm_path = "/data/vlti/bin/wezterm",
+			timeout = 14400,
 		},
 		{
 			name = "vlti_vpn",

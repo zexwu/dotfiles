@@ -1,4 +1,4 @@
 local options = {
-	default_prog = { "/bin/zsh" , "-l"},
+    default_prog = { "/bin/zsh", "-l" },
 }
 return options

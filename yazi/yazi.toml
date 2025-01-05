@@ -5,3 +5,14 @@ linemode = "mtime"
 [preview]
 max_width = 5000
 max_height = 5000
+
+[opener]
+play = [
+	{ run = 'iina-cli "$@"', block = true, for = "macos" },
+]
+edit = [
+	{ run = 'nvim "$@"', block = true, for = "macos" },
+]
+open = [
+	{ run = 'open "$@"', desc = "Open" },
+]

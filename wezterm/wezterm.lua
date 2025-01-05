@@ -1,19 +1,23 @@
-local Config = require('config')
+local Config = require("config")
 
+local conf = Config:init()
+    :append(require("config.appearance"))
+    :append(require("config.bindings"))
+    :append(require("config.domains"))
+    :append(require("config.fonts"))
+    :append(require("config.general"))
+    :append(require("config.launch")).options
 
--- require('events.tab-title').setup()
--- require('events.new-tab-button').setup()
--- require('events.right-status').setup()
--- require('events.left-status').setup()
--- require('events.rr').setup()
--- require('events.title').setup()
--- require('events.tabbar')
+local tabbar = require("plugins.tabbar")
+tabbar.apply_to_config(conf, {
+    position = "top",
+    modules = {
+        username = { enabled = true },
+        pane = { enabled = true },
+        workspace = { enabled = false },
+        leader = { enabled = true },
+        cwd = { enabled = true, color = 5 },
+    },
+})
 
-
-return Config:init()
-   :append(require('config.appearance'))
-   -- :append(require('config.bindings'))
-   :append(require('config.domains'))
-   :append(require('config.fonts'))
-   :append(require('config.general'))
-   :append(require('config.launch')).options
+return conf

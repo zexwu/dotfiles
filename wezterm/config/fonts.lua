@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local font = "FiraCode Nerd Font Mono"
 -- local font = "Fira Code"
-local font_size = 17
+local font_size = 16
 
 return {
 	font = wezterm.font_with_fallback({ { family = font, weight = 350 }, { family = "SimSong" } }),

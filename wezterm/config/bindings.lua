@@ -104,8 +104,8 @@ local keys = {
         mods = mod.SUPER,
         action = act.PaneSelect({ alphabet = "1234567890", mode = "SwapWithActiveKeepFocus" }),
     },
-    { key = "-", mods = "SUPER|SHIFT" , action = wezterm.action.DecreaseFontSize },
-    { key = "=", mods = "SUPER|SHIFT" , action = wezterm.action.IncreaseFontSize },
+    { key = "-", mods = "SUPER|SHIFT", action = wezterm.action.DecreaseFontSize },
+    { key = "=", mods = "SUPER|SHIFT", action = wezterm.action.IncreaseFontSize },
     -- panes: resize
     { key = "k", mods = "SUPER|SHIFT", action = act.AdjustPaneSize({ "Up", 2 }) },
     { key = "j", mods = "SUPER|SHIFT", action = act.AdjustPaneSize({ "Down", 2 }) },

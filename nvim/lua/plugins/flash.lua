@@ -3,15 +3,16 @@ return {
     event = "VeryLazy",
     vscode = true,
     ---@type Flash.Config
-    opts = {
-        multi_window = false,
-        modes = {
-            search = { enabled = true },
-            char = { enabled = false },
-        },
-    },
+    opts = { multi_window = false, modes = { search = { enabled = false }, char = { enabled = false } } },
     keys = {
-        -- { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+        {
+            "s",
+            mode = { "n", "x", "o" },
+            function()
+                require("flash").jump()
+            end,
+            desc = "Flash",
+        },
         {
             "S",
             mode = { "n", "o", "x" },
@@ -20,7 +21,14 @@ return {
             end,
             desc = "Flash Treesitter",
         },
-        -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+        -- {
+        --   "r",
+        --   mode = "o",
+        --   function()
+        --     require("flash").remote()
+        --   end,
+        --   desc = "Remote Flash",
+        -- },
         {
             "R",
             mode = { "o", "x" },

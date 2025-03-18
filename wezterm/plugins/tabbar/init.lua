@@ -5,33 +5,8 @@ local M = {}
 local options = {}
 
 local separator = package.config:sub(1, 1) == "\\" and "\\" or "/"
-local plugin_dir = wez.plugin.list()[1].plugin_dir:gsub(separator .. "[^" .. separator .. "]*$", "")
 
----checks if the plugin directory exists
----@param path string
----@return boolean
-local function directory_exists(path)
-	local success, result = pcall(wez.read_dir, plugin_dir .. path)
-	return success and result
-end
-
----returns the name of the package, used when requiring modules
----@return string
-local function get_require_path()
-	local path = "httpssCssZssZsgithubsDscomsZsadriankarlensZsbarsDswezterm"
-	local path_trailing_slash = "httpssCssZssZsgithubsDscomsZsadriankarlensZsbarsDsweztermsZs"
-	return directory_exists(path_trailing_slash) and path_trailing_slash or path
-end
-
-package.path = package.path
-	.. ";"
-	.. plugin_dir
-	.. separator
-	.. get_require_path()
-	.. separator
-	.. "plugin"
-	.. separator
-	.. "?.lua"
+package.path = "/Users/zexwu/.config/wezterm/plugins/tabbar/?.lua"
 
 local utilities = require("bar.utilities")
 local config = require("bar.config")

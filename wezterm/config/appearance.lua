@@ -41,7 +41,7 @@ return {
     },
     window_close_confirmation = "NeverPrompt",
     -- window_decorations = "RESIZE",
-    window_decorations = "RESIZE|MACOS_FORCE_DISABLE_SHADOW",
+    window_decorations = "RESIZE",
     macos_window_background_blur = 40,
     inactive_pane_hsb = {
         saturation = 1,

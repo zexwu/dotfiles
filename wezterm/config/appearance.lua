@@ -36,8 +36,8 @@ return {
     window_padding = {
         left = 10,
         right = 1,
-        top = 5,
-        bottom = 1,
+        top = 40,
+        bottom = 0,
     },
     window_close_confirmation = "NeverPrompt",
     -- window_decorations = "RESIZE",

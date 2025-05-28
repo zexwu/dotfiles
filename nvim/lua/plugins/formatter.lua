@@ -10,6 +10,13 @@ return {
         opts = {
             formatters_by_ft = {
                 ["python"] = { "black", "isort" },
+                ["fortran"] = { "findent" },
+                ["tex"] = { "latex_indent" },
+            },
+        },
+        formatters = {
+            findent = {
+                prepend_args = { "-i4"},
             },
         },
     },

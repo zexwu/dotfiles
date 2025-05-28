@@ -19,7 +19,7 @@ opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true -- Ignore case
 opt.inccommand = "nosplit" -- preview incremental substitute
-opt.laststatus = 1
+opt.laststatus = 3
 opt.list = true -- Show some invisible characters (tabs...
 opt.mouse = "" -- Enable mouse mode
 opt.number = true -- Print line number
@@ -51,14 +51,33 @@ opt.wrap = true -- Disable line wrap
 opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
 
 if vim.g.neovide then
-  -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
-  vim.g.neovide_transparency = 0.8
-  vim.g.neovide_window_blurred = true
-  vim.o.guifont = "FiraCode_Nerd_Font_Mono:h17:#h-none:b350" -- text below applies for VimScript
-  vim.g.neovide_padding_top = 0
-  vim.g.neovide_padding_bottom = 0
-  vim.g.neovide_padding_right = 0
-  vim.g.neovide_padding_left = 0
-  vim.g.neovide_floating_shadow = false
-  vim.g.neovide_hide_mouse_when_typing = true
+    -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+    vim.g.neovide_transparency = 0.8
+    vim.g.neovide_window_blurred = true
+    vim.o.guifont = "FiraCode_Nerd_Font_Mono:h17:#h-none:b350" -- text below applies for VimScript
+    vim.g.neovide_padding_top = 0
+    vim.g.neovide_padding_bottom = 0
+    vim.g.neovide_padding_right = 0
+    vim.g.neovide_padding_left = 0
+    vim.g.neovide_floating_shadow = false
+    vim.g.neovide_hide_mouse_when_typing = true
 end
+
+local function paste()
+  return {
+    vim.fn.split(vim.fn.getreg(""), "\n"),
+    vim.fn.getregtype(""),
+  }
+end
+
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = paste,
+    ["*"] = paste,
+  },
+}

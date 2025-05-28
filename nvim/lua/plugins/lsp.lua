@@ -10,9 +10,8 @@ return {
                 settings = {
                     python = {
                         analysis = {
-                            autoSearchPaths = false,
-                            diagnosticMode = "openFilesOnly",
-
+                            autoSearchPaths = true,
+                            diagnosticMode = "workspace",
                             useLibraryCodeForTypes = true,
                             typeCheckingMode = "standard",
                             diagnosticSeverityOverrides = {
@@ -36,6 +35,15 @@ return {
                 },
             },
             fortls = {},
+            ruff = {
+                init_options = {
+                    settings = {
+                        lint = {
+                            ignore = { "E701" },
+                        },
+                    },
+                },
+            },
         },
     },
 }

@@ -157,6 +157,9 @@ format = ' via [$symbol]($style)'
 [vlang]
 format = ' via [$symbol]($style)'
 
+[clang]
+format = ' via [$symbol]($style)'
+
 [zig]
 format = ' via [$symbol]($style)'
 

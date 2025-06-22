@@ -32,6 +32,9 @@ format = " via [$symbol]($style)"
 [buf]
 format = " via [$symbol]($style)"
 
+[c]
+format = " via [$symbol($version(-$name) )]($style)"
+
 [cmake]
 format = " via [$symbol]($style)"
 
@@ -155,9 +158,6 @@ format = ' via [$symbol]($style)'
 format = ' via [$symbol]($style)'
 
 [vlang]
-format = ' via [$symbol]($style)'
-
-[clang]
 format = ' via [$symbol]($style)'
 
 [zig]

@@ -17,7 +17,7 @@ return {
             source = { Color = colors.background },
             height = "100%",
             width = "100%",
-            opacity = 1,
+            opacity = 0.95,
         },
     },
 
@@ -25,7 +25,7 @@ return {
     enable_scroll_bar = false,
 
     -- tab bar
-    enable_tab_bar = true,
+    enable_tab_bar = false,
     hide_tab_bar_if_only_one_tab = false,
     use_fancy_tab_bar = false,
     tab_max_width = 50,
@@ -34,14 +34,15 @@ return {
 
     -- window
     window_padding = {
-        left = 10,
-        right = 1,
-        top = 40,
+        left = 5,
+        right = 0,
+        top = 3,
         bottom = 0,
     },
     window_close_confirmation = "NeverPrompt",
     -- window_decorations = "RESIZE",
-    window_decorations = "RESIZE",
+    -- window_decorations = "RESIZE",
+    window_decorations = "MACOS_FORCE_DISABLE_SHADOW|RESIZE",
     macos_window_background_blur = 40,
     inactive_pane_hsb = {
         saturation = 1,

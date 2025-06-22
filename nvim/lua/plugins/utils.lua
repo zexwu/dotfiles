@@ -36,11 +36,12 @@ return {
         },
     },
 
-    -- disable scrolling 
+    -- disable scrolling
     {
         "snacks.nvim",
         opts = {
             scroll = { enabled = false },
+            -- image = { convert = { notify = false } },
         },
     },
 
@@ -63,6 +64,7 @@ return {
                 "typescript",
                 "vim",
                 "yaml",
+                "latex",
             },
         },
     },
@@ -96,7 +98,7 @@ return {
         },
     },
 
-    -- rainbow_csv 
+    -- rainbow_csv
     {
         "cameron-wags/rainbow_csv.nvim",
         config = true,

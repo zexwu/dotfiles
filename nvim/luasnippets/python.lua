@@ -30,13 +30,9 @@ local nodes = {
     s(
         "basic",
         t({
-            "import matplotlib.pyplot as plt",
-            "import smplotlib",
             "import numpy as np",
-            "import pandas as pd",
-            "from astropy.table import Table",
-            "",
-            "fig, ax = plt.subplots()",
+            "import matplotlib.pyplot as plt",
+            'plt.rcParams["font.size"] = "12"',
             "",
         }),
         { condition = line_begin }
@@ -47,6 +43,32 @@ local nodes = {
             "from astropy.table import Table",
             "from astropy.coordniates import Skycoord",
             "import astropy.units as u",
+        }),
+        { condition = line_begin }
+    ),
+
+    s(
+        "fig",
+        t({
+            "fig, ax = plt.subplots(figsize=(6, 6))",
+        }),
+        { condition = line_begin }
+    ),
+    s(
+        "sfig",
+        fmt(
+            [[ 
+fig.tight_layout()
+plt.savefig({1}, bbox_inches="tight", dpi=200)
+        ]],
+            { i(1, '"temp.png"') }
+        ),
+        { condition = line_begin }
+    ),
+    s(
+        "---",
+        t({
+            "# ================================================================================",
         }),
         { condition = line_begin }
     ),

@@ -30,8 +30,12 @@ local nodes = {
     s(
         "basic",
         t({
-            "import numpy as np",
+            "import os",
+            "",
             "import matplotlib.pyplot as plt",
+            "import numpy as np",
+            "from astropy.table import Table",
+            "",
             'plt.rcParams["font.size"] = "12"',
             "",
         }),
@@ -50,25 +54,15 @@ local nodes = {
     s(
         "fig",
         t({
-            "fig, ax = plt.subplots(figsize=(6, 6))",
+            "fig, ax = plt.subplots(figsize=(6, 6), dpi=150, tight_layout=True)",
         }),
         { condition = line_begin }
     ),
-    s(
-        "sfig",
-        fmt(
-            [[ 
-fig.tight_layout()
-plt.savefig({1}, bbox_inches="tight", dpi=200)
-        ]],
-            { i(1, '"temp.png"') }
-        ),
-        { condition = line_begin }
-    ),
+    s("sfig", fmt("plt.savefig('{1}', dpi=200)", { i(1, "temp.png") }), { condition = line_begin }),
     s(
         "---",
         t({
-            "# ================================================================================",
+            "# =============================================================================",
         }),
         { condition = line_begin }
     ),

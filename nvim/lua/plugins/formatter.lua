@@ -12,12 +12,18 @@ return {
                 ["python"] = { "black", "isort" },
                 ["fortran"] = { "findent" },
                 ["tex"] = { "latex_indent" },
+                ["sh"] = { "shfmt" },
+                ["zshrc"] = { "shfmt" },
+                ["zprofile"] = { "shfmt" },
             },
         },
         formatters = {
             findent = {
-                prepend_args = { "-i4"},
+                prepend_args = { "-i4" },
             },
+            black = {
+                args = { "--line-length", "150", "--skip-magic-trailing-comma"},
+            }
         },
     },
 }

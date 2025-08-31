@@ -10,7 +10,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
 ]
 
 # Start AeroSpace at login
@@ -59,8 +59,8 @@ preset = 'qwerty'
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 5
-inner.vertical = 5
+inner.horizontal = 10
+inner.vertical = 10
 outer.left = 5
 outer.bottom = 5
 outer.top = 5
@@ -221,13 +221,19 @@ run = 'layout floating'
 if.app-id = 'com.apple.ActivityMonitor'
 run = 'layout floating'
 
-# python
 [[on-window-detected]]
 if.app-name-regex-substring = "python"
 run = 'layout floating'
 
-
-# python
 [[on-window-detected]]
 if.app-name-regex-substring = "ds9"
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = "QFitsView"
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.tencent.xinWeChat'
+if.window-title-regex-substring = '^(?!WeChat \(Chats\)|微信 \(聊天\)).*$'
 run = 'layout floating'

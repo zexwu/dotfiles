@@ -14,7 +14,7 @@ return {
                             autoSearchPaths = true,
                             diagnosticMode = "workspace",
                             useLibraryCodeForTypes = true,
-                            typeCheckingMode = "standard",
+                            -- typeCheckingMode = "standard",
                             diagnosticSeverityOverrides = {
                                 reportGeneralTypeIssues = "none",
                                 reportOptionalSubscript = "none",
@@ -40,7 +40,7 @@ return {
                 init_options = {
                     settings = {
                         lint = {
-                            ignore = { "E701" },
+                            ignore = { "E701", "E741", "E731", "F401" },
                         },
                     },
                 },

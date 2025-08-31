@@ -4,6 +4,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.autoformat = false
+vim.g.python3_host_prog = vim.fn.exepath("python3")
+vim.g.loaded_python3_provider = nil
 
 local opt = vim.opt
 
@@ -49,6 +51,8 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.wrap = true -- Disable line wrap
 -- opt.iskeyword:remove("_")
 opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldmethod = "expr"
 
 if vim.g.neovide then
     -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.

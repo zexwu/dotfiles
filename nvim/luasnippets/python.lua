@@ -66,6 +66,13 @@ local nodes = {
         }),
         { condition = line_begin }
     ),
+    s(
+        "skip",
+        t({
+            "# fmt: skip",
+        }),
+        { condition = line_begin }
+    ),
 }
 
 return nodes

@@ -16,14 +16,14 @@ return {
                 ["zshrc"] = { "shfmt" },
                 ["zprofile"] = { "shfmt" },
             },
-        },
-        formatters = {
-            findent = {
-                prepend_args = { "-i4" },
+            formatters = {
+                findent = {
+                    prepend_args = { "-i4" },
+                },
+                black = {
+                    prepend_args = { "-l", "100" },
+                },
             },
-            black = {
-                args = { "--line-length", "150", "--skip-magic-trailing-comma"},
-            }
         },
     },
 }

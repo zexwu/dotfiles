@@ -12,10 +12,8 @@ include wezterm_theme.conf
 
 
 modify_font cell_width 95%
-font_family      family="JetBrainsMono Nerd Font Mono" style=Light
-bold_font        family="JetBrainsMono Nerd Font Mono" style=Medium
-symbol_map U+E000-U+F1AF0 JetBrainsMonoNL Nerd Font
-
+font_family      family="JetBrainsMono Nerd Font Medium" wght=350
+bold_font        family="JetBrainsMono Nerd Font Medium" wght=350
 
 # font_family           JetBrainsMono Nerd Font
 # font_weight           350
@@ -251,7 +249,7 @@ disable_ligatures never
 
 #: Text cursor customization {{{
 
-# cursor none
+cursor none
 
 #: The color of text under the cursor. If you want it rendered with
 #: the background color of the cell underneath instead, use the
@@ -280,13 +278,13 @@ cursor_shape block
 #: the cursor shape to beam at shell prompts. You can avoid this by
 #: setting shell_integration to no-cursor.
 
-cursor_shape_unfocused hollow
+# cursor_shape_unfocused hollow
 
 #: Defines the text cursor shape when the OS window is not focused.
 #: The unfocused cursor shape can be one of block, beam, underline,
 #: hollow and unchanged (leave the cursor shape as it is).
 
-cursor_beam_thickness 2
+# cursor_beam_thickness 1.5
 
 #: The thickness of the beam cursor (in pts).
 
@@ -315,7 +313,7 @@ cursor_blink_interval 0
 #: Stop blinking cursor after the specified number of seconds of
 #: keyboard inactivity. Set to zero to never stop blinking.
 
-cursor_trail 0
+# cursor_trail 0
 
 #: Set this to a value larger than zero to enable a "cursor trail"
 #: animation. This is an animation that shows a "trail" following the
@@ -914,7 +912,8 @@ draw_minimal_borders yes
 #: set the vertical and horizontal sides. Three values set top,
 #: horizontal and bottom. Four values set top, right, bottom and left.
 
-window_padding_width 3
+# window_padding_width 3 0 0 5
+window_padding_width 0
 
 #: The window padding (in pts) (blank area between the text and the
 #: window border). A single value sets all four sides. Two values set
@@ -959,7 +958,7 @@ window_padding_width 3
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
 
-hide_window_decorations titlebar-only
+hide_window_decorations yes
 
 #: Hide the window decorations (title-bar and window borders) with
 #: yes. On macOS, titlebar-only and titlebar-and-corners can be used

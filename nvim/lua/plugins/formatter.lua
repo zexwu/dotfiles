@@ -12,17 +12,17 @@ return {
                 ["python"] = { "black", "isort" },
                 ["fortran"] = { "findent" },
                 ["tex"] = { "latex_indent" },
-                ["sh"] = { "shfmt" },
-                ["zshrc"] = { "shfmt" },
-                ["zprofile"] = { "shfmt" },
+                ["shell"] = { "shfmt" },
+                ["zsh"] = { "beautysh" },
             },
-            formatters = {
-                findent = {
-                    prepend_args = { "-i4" },
-                },
-                black = {
-                    prepend_args = { "-l", "100" },
-                },
+        },
+        formatters = {
+            findent = {
+                prepend_args = { "-i4" },
+            },
+            black = {
+                -- Check for a local config; if not found, use this argument
+                prepend_args = { "--line-length", "119" },
             },
         },
     },

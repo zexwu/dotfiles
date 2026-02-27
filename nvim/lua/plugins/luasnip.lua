@@ -13,7 +13,7 @@ return {
     --         end,
     --     },
     -- },
-    
+
     opts = {
         history = true,
         delete_check_events = "TextChanged",
@@ -22,7 +22,7 @@ return {
     config = function(_, opts)
         local ls = require("luasnip")
         ls.setup(opts)
-        require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/luasnippets/" })
+        require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/luasnippets/" } })
     end,
     keys = {
         {

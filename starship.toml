@@ -29,8 +29,8 @@ disabled = false
 
 [conda]
 format = '[$symbol$environment](bold dimmed green) '
-disabled = false
 ignore_base = false
+disabled = false
 symbol = ""
 
 [username]

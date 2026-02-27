@@ -14,7 +14,7 @@ return {
                             autoSearchPaths = true,
                             diagnosticMode = "workspace",
                             useLibraryCodeForTypes = true,
-                            -- typeCheckingMode = "standard",
+                            typeCheckingMode = "standard",
                             diagnosticSeverityOverrides = {
                                 reportGeneralTypeIssues = "none",
                                 reportOptionalSubscript = "none",
@@ -35,12 +35,27 @@ return {
                     single_file_support = true,
                 },
             },
+            texlab = {
+                settings = {
+                    texlab = {
+
+                        diagnostics = {
+                            ignoredPatterns = {
+                                "Undefined reference",
+                                "Package hyperref Warning",
+                                "Underfull",
+                                "Overfull",
+                            },
+                        },
+                    },
+                },
+            },
             fortls = {},
             ruff = {
                 init_options = {
                     settings = {
                         lint = {
-                            ignore = { "E701", "E741", "E731", "F401" },
+                            ignore = { "E701", "E702", "E703", "E712", "E731"},
                         },
                     },
                 },

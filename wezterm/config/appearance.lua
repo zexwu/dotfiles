@@ -9,17 +9,18 @@ return {
     webgpu_power_preference = "HighPerformance",
 
     -- color scheme
-    colors = colors,
+    -- colors = colors,
+    color_scheme="Kanagawa (Gogh)",
 
     -- background
-    background = {
-        {
-            source = { Color = colors.background },
-            height = "100%",
-            width = "100%",
-            opacity = 0.95,
-        },
-    },
+    -- background = {
+    --     {
+    --         source = { Color = colors.background },
+    --         height = "100%",
+    --         width = "100%",
+    --         opacity = 0.95,
+    --     },
+    -- },
 
     -- scrollbar
     enable_scroll_bar = false,

@@ -4,13 +4,14 @@ return {
         version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
         dependencies = { "3rd/image.nvim", "wezterm.nvim" },
         build = ":UpdateRemotePlugins",
+        lazy = false,
+        enabled = false,
         init = function()
             vim.g.molten_image_provider = "image.nvim"
-            vim.g.molten_output_win_max_height = 20
+            vim.g.molten_output_win_max_height = 25
             vim.g.molten_auto_open_output = true
             vim.g.molten_save_path = "/Users/zexwu/data/molten/"
             vim.g.molten_wrap_output = true
-            vim.g.molten_tick_rate = 500
             -- vim.g.molten_output_win_style = "minimal"
         end,
         keys = {
@@ -36,10 +37,8 @@ return {
         "3rd/image.nvim",
         opts = {
             backend = "kitty", -- whatever backend you would like to use
-            -- backend = "ueberzug", -- whatever backend you would like to use
-            processor = "magick_cli", -- or "magick_rock"
             max_width = 100,
-            max_height = 17,
+            max_height = 23,
             max_height_window_percentage = math.huge,
             max_width_window_percentage = math.huge,
             window_overlap_clear_enabled = true, -- toggles images when windows are overlapped

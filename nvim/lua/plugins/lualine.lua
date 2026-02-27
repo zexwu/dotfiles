@@ -20,8 +20,9 @@ return {
 
         vim.o.laststatus = vim.g.lualine_laststatus
         local auto_theme_custom = require("lualine.themes.tokyonight")
-        auto_theme_custom.normal.c.bg = "none"
-        auto_theme_custom.inactive.c.bg = "none"
+        local auto_theme_custom = require("lualine.themes.kanagawa")
+        -- auto_theme_custom.normal.c.bg = "none"
+        -- auto_theme_custom.inactive.c.bg = "none"
 
         local opts = {
             options = {
@@ -39,11 +40,11 @@ return {
                     LazyVim.lualine.root_dir({ icon = "󱉭" }),
                     { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
                     { LazyVim.lualine.pretty_path(), padding = { left = 0, right = 1 } },
-                    {
-                        "navic",
-                        color_correction = "dynamic",
-                        padding = { left = 1, right = 0 },
-                    },
+                    -- {
+                    --     "navic",
+                    --     color_correction = "dynamic",
+                    --     padding = { left = 1, right = 10 },
+                    -- },
                 },
                 lualine_x = {
                     {
@@ -131,7 +132,7 @@ return {
                 end,
             })
         end
-
+        vim.api.nvim_set_hl(0, "StatusLine", { link = "lualine_c_normal" })
         return opts
     end,
 }

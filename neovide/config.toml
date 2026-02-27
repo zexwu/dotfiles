@@ -1,5 +1,5 @@
 fork = true
-frame = "transparent"
+frame = "buttonless"
 title-hidden = true
 maximized = true
 log = false
@@ -8,4 +8,3 @@ neovim-bin = "/Users/zexwu/software/nvim-macos-arm64/bin/nvim"
 no-multigrid = false
 srgb = false
 tabs = true
-theme = "auto"

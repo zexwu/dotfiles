@@ -1,0 +1,32 @@
+{
+  "title": "Right Alt IME",
+  "rules": [
+    {
+      "description": "tap right alt -> zh (ITABC), hold -> en (ABC) + Esc",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "right_option",
+            "modifiers": { "optional": ["any"] }
+          },
+          "to_if_alone": [
+            {
+              "select_input_source": {
+                "input_source_id": "com.apple.inputmethod.SCIM.ITABC"
+              }
+            }
+          ],
+          "to_if_held_down": [
+            { "key_code": "escape" },
+            {
+              "select_input_source": {
+                "input_source_id": "com.apple.keylayout.ABC"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

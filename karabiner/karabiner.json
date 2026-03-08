@@ -4,6 +4,51 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Right Control: CN(SCIM.ITABC) -> EN(ABC)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "input_sources": [{ "input_source_id": "com.apple.inputmethod.SCIM.ITABC" }],
+                                        "type": "input_source_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [
+                                    { "key_code": "escape" },
+                                    { "select_input_source": { "input_source_id": "com.apple.keylayout.ABC" } },
+                                    { "key_code": "left_shift" }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Right Control: EN(ABC) -> CN(SCIM.ITABC)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "input_sources": [{ "input_source_id": "com.apple.keylayout.ABC" }],
+                                        "type": "input_source_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [
+                                    { "select_input_source": { "input_source_id": "com.apple.inputmethod.SCIM.ITABC" } },
+                                    { "key_code": "left_shift" }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Caps Lock -> Escape",
                         "manipulators": [
                             {
@@ -15,78 +60,29 @@
                                 "type": "basic"
                             }
                         ]
-                    },
-                    {
-                        "description": "Right Option tap toggles between CN (SCIM.ITABC) and EN (ABC) using a variable",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "ime_is_cn",
-                                        "type": "variable_if",
-                                        "value": 0
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "right_option",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to_if_alone": [
-                                    {
-                                        "set_variable": {
-                                            "name": "ime_is_cn",
-                                            "value": 1
-                                        }
-                                    },
-                                    { "select_input_source": { "input_source_id": "com.apple.inputmethod.SCIM.ITABC" } }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "ime_is_cn",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "right_option",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to_if_alone": [
-                                    {
-                                        "set_variable": {
-                                            "name": "ime_is_cn",
-                                            "value": 0
-                                        }
-                                    },
-                                    { "select_input_source": { "input_source_id": "com.apple.keylayout.ABC" } }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Right Alt: tap Chinese, hold English + Esc",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "right_option",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to_if_alone": [{ "select_input_source": { "input_source_id": "com.apple.inputmethod.SCIM.ITABC" } }],
-                                "to_if_held_down": [
-                                    { "key_code": "escape" },
-                                    { "select_input_source": { "input_source_id": "com.apple.keylayout.ABC" } }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
                     }
                 ]
             },
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 20616,
+                        "vendor_id": 12815
+                    },
+                    "ignore": true
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 33398,
+                        "vendor_id": 9306
+                    },
+                    "ignore": false,
+                    "treat_as_built_in_keyboard": true
+                }
+            ],
             "name": "Default profile",
             "selected": true,
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }

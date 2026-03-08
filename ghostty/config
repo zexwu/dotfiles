@@ -28,3 +28,5 @@ shell-integration-features = no-cursor,sudo,ssh-env
 theme = Kanagawa wave
 # theme = Gruvbox Dark Hard
 keybind = shift+enter=text:\x1b\r
+# auto-update-channel = tip
+selection-word-chars = " \t'\"│`|,()[]{}<>$"

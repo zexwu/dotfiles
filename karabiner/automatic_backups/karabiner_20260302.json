@@ -1,0 +1,95 @@
+{
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Caps Lock -> Escape",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Right Option tap toggles between CN (SCIM.ITABC) and EN (ABC) using a variable",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "ime_is_cn",
+                                        "type": "variable_if",
+                                        "value": 0
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_option",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ime_is_cn",
+                                            "value": 1
+                                        }
+                                    },
+                                    { "select_input_source": { "input_source_id": "com.apple.inputmethod.SCIM.ITABC" } }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "ime_is_cn",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_option",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ime_is_cn",
+                                            "value": 0
+                                        }
+                                    },
+                                    { "select_input_source": { "input_source_id": "com.apple.keylayout.ABC" } }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Right Alt: tap Chinese, hold English + Esc",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "right_option",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [{ "select_input_source": { "input_source_id": "com.apple.inputmethod.SCIM.ITABC" } }],
+                                "to_if_held_down": [
+                                    { "key_code": "escape" },
+                                    { "select_input_source": { "input_source_id": "com.apple.keylayout.ABC" } }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}

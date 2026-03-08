@@ -4,21 +4,7 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Change right_control to fn",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "right_control",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "fn" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Right Control: CN(SCIM.ITABC) -> EN(ABC)",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -42,7 +28,6 @@
                     },
                     {
                         "description": "Right Control: EN(ABC) -> CN(SCIM.ITABC)",
-                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [

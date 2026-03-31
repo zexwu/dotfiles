@@ -169,7 +169,7 @@ return {
                     explorer = {
                         layout = {
                             layout = {
-                                width = 0.25,
+                                width = 0.2,
                                 position = "left", -- Can be "left" or "right"
                             },
                         },

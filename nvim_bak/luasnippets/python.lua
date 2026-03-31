@@ -30,13 +30,13 @@ local nodes = {
     s(
         "basic",
         t({
+            "import os",
+            "",
             "import matplotlib.pyplot as plt",
-            "import smplotlib",
             "import numpy as np",
-            "import pandas as pd",
             "from astropy.table import Table",
             "",
-            "fig, ax = plt.subplots()",
+            "plt.style.use('~/zexwu_lib/zexwu.mplstyle')",
             "",
         }),
         { condition = line_begin }
@@ -47,6 +47,29 @@ local nodes = {
             "from astropy.table import Table",
             "from astropy.coordniates import Skycoord",
             "import astropy.units as u",
+        }),
+        { condition = line_begin }
+    ),
+
+    s(
+        "fig",
+        t({
+            "fig, ax = plt.subplots(figsize=(6, 6))",
+        }),
+        { condition = line_begin }
+    ),
+    s("sfig", fmt("plt.savefig('{1}', dpi=200)", { i(1, "temp.png") }), { condition = line_begin }),
+    s(
+        "---",
+        t({
+            "# =============================================================================",
+        }),
+        { condition = line_begin }
+    ),
+    s(
+        "skip",
+        t({
+            "# fmt: skip",
         }),
         { condition = line_begin }
     ),

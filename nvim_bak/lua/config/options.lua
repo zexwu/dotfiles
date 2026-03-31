@@ -19,7 +19,7 @@ opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true -- Ignore case
 opt.inccommand = "nosplit" -- preview incremental substitute
-opt.laststatus = 1
+opt.laststatus = 3
 opt.list = true -- Show some invisible characters (tabs...
 opt.mouse = "" -- Enable mouse mode
 opt.number = true -- Print line number
@@ -47,25 +47,64 @@ opt.undolevels = 10000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.wrap = true -- Disable line wrap
-opt.iskeyword:remove("_")
+-- opt.iskeyword:remove("_")
 opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
+vim.g.trouble_lualine = true
 
-vim.opt_local.formatoptions:remove({ 'r', 'o' })
+opt.formatoptions:remove({ "c", "r", "o" })
 
-if vim.fn.has("nvim-0.9.0") == 1 then
-    opt.splitkeep = "screen"
-    opt.shortmess:append({ C = true })
+-- folding setup --
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldenable = false -- Prevents everything from being folded when you open a file
+
+local function paste()
+    return {
+        vim.fn.split(vim.fn.getreg(""), "\n"),
+        vim.fn.getregtype(""),
+    }
 end
+
+vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+        ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+        ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+        ["+"] = paste,
+        ["*"] = paste,
+    },
+}
 
 if vim.g.neovide then
     -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
-    vim.g.neovide_transparency = 0.8
+    vim.g.neovide_opacity = 0.8
     vim.g.neovide_window_blurred = true
-    vim.o.guifont = "FiraCode_Nerd_Font_Mono:h17:#h-none:b350" -- text below applies for VimScript
+    vim.o.guifont = "JetBrainsMono_Nerd_Font:h22:#h-none:b350" -- text below applies for VimScript
     vim.g.neovide_padding_top = 0
     vim.g.neovide_padding_bottom = 0
     vim.g.neovide_padding_right = 0
     vim.g.neovide_padding_left = 0
     vim.g.neovide_floating_shadow = false
-    vim.g.neovide_hide_mouse_when_typing = true 
+    vim.g.neovide_hide_mouse_when_typing = true
+
+    vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
+    vim.keymap.set("v", "<D-c>", '"+y') -- Copy
+    vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
+    vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
+    vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
+    vim.keymap.set("i", "<D-v>", "<C-R>+") -- Paste insert mode
+    vim.g.clipboard = {
+        name = "macOS-Clipboard",
+        copy = {
+            ["+"] = "pbcopy",
+            ["*"] = "pbcopy",
+        },
+        paste = {
+            ["+"] = "pbpaste",
+            ["*"] = "pbpaste",
+        },
+        cache_enabled = 0,
+    }
 end

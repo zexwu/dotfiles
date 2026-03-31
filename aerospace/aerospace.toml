@@ -216,7 +216,7 @@ run = 'layout floating'
 if.app-id = 'com.colliderli.iina'
 run = 'layout floating'
 
-# activity moniitor 
+# activity moniitor
 [[on-window-detected]]
 if.app-id = 'com.apple.ActivityMonitor'
 run = 'layout floating'
@@ -269,4 +269,3 @@ run = "move-node-to-workspace ○￼○￼○￼●"
 [[on-window-detected]]
 if.app-id = "com.tencent.xinWeChat"
 run = "move-node-to-workspace ○￼○￼○￼●"
-

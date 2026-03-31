@@ -36,7 +36,7 @@ local nodes = {
             "import numpy as np",
             "from astropy.table import Table",
             "",
-            'plt.rcParams["font.size"] = "12"',
+            "plt.style.use('~/zexwu_lib/zexwu.mplstyle')",
             "",
         }),
         { condition = line_begin }
@@ -54,7 +54,7 @@ local nodes = {
     s(
         "fig",
         t({
-            "fig, ax = plt.subplots(figsize=(6, 6), dpi=150, tight_layout=True)",
+            "fig, ax = plt.subplots(figsize=(6, 6))",
         }),
         { condition = line_begin }
     ),

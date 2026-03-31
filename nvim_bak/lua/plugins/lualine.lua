@@ -1,150 +1,50 @@
-local window_width_limit = 100
-local hide_in_width = function()
-    return vim.o.columns > window_width_limit
-end
-local env_cleanup = function(venv)
-    if string.find(venv, "/") then
-        local final_venv = venv
-        for w in venv:gmatch("([^/]+)") do
-            final_venv = w
-        end
-        venv = final_venv
-    end
-    return venv
-end
-
-local pyenv = {
-    function()
-        if vim.bo.filetype == "python" then
-            local venv = os.getenv("CONDA_DEFAULT_ENV") or os.getenv("VIRTUAL_ENV")
-            if venv then
-                local icons = require("nvim-web-devicons")
-                local py_icon, _ = icons.get_icon(".py")
-                return string.format(" " .. py_icon .. " (%s)", env_cleanup(venv))
-            end
-        end
-        return ""
-    end,
-    cond = hide_in_width,
-    color = { fg = "#98be65" },
-}
-local space = {
-    function()
-        local shiftwidth = vim.api.nvim_buf_get_option(0, "shiftwidth")
-        return "->" .. " " .. shiftwidth
-    end,
-    padding = 1,
-}
-
-local lsp = {
-    function(msg)
-        msg = msg or "LS Inactive"
-
-        local buf_clients = vim.lsp.get_active_clients()
-        if next(buf_clients) == nil then
-            if type(msg) == "boolean" or #msg == 0 then
-                return "LS Inactive"
-            end
-            return msg
-        end
-        local buf_client_names = {}
-
-        -- add client
-        for _, client in pairs(buf_clients) do
-            if client.name ~= "null-ls" and client.name ~= "copilot" then
-                table.insert(buf_client_names, client.name)
-            end
-        end
-
-        -- add formatter
-        -- local formatters = require("null-ls.sources").get_available(buf_ft, "NULL_LS_FORMATTING")
-        -- for _, client in pairs(formatters) do
-        --     table.insert(buf_client_names, client.name)
-        --     print(client.name)
-        -- end
-        -- local linters = require("null-ls.sources").get_available(buf_ft, "NULL_LS_DIAGNOSTICS")
-        -- for _, client in pairs(linters) do
-        --     table.insert(buf_client_names, client.name)
-        -- end
-        -- local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
-        -- local formatters = nls.formatters
-        -- local supported_formatters = formatters.list_registered(buf_ft)
-        -- vim.list_extend(buf_client_names, supported_formatters)
-        -- --
-        -- -- add linter
-        -- local linters = nls.linters
-        -- local supported_linters = linters.list_registered(buf_ft)
-        -- vim.list_extend(buf_client_names, supported_linters)
-
-        local unique_client_names = vim.fn.uniq(buf_client_names)
-
-        local language_servers = "[" .. table.concat(unique_client_names, ", ") .. "]"
-
-        return language_servers
-    end,
-    color = { gui = "bold" },
-    cond = hide_in_width,
-}
-
-local auto_theme_custom = require("lualine.themes.tokyonight")
-auto_theme_custom.normal.c.bg = "none"
-auto_theme_custom.inactive.c.bg = "none"
-
 return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    opts = function(plugin)
-        local icons = require("lazyvim.config").icons
-
-        local function fg(name)
-            return function()
-                ---@type {foreground?:number}?
-                local hl = vim.api.nvim_get_hl_by_name(name, true)
-                return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
-            end
+    init = function()
+        vim.g.lualine_laststatus = vim.o.laststatus
+        if vim.fn.argc(-1) > 0 then
+            -- set an empty statusline till lualine loads
+            vim.o.statusline = " "
+        else
+            -- hide the statusline on the starter page
+            vim.o.laststatus = 0
         end
+    end,
+    opts = function()
+        -- PERF: we don't need this lualine require madness 🤷
+        local lualine_require = require("lualine_require")
+        lualine_require.require = require
 
-        return {
+        local icons = LazyVim.config.icons
+
+        vim.o.laststatus = vim.g.lualine_laststatus
+        local auto_theme_custom = require("lualine.themes.tokyonight")
+        local auto_theme_custom = require("lualine.themes.kanagawa")
+        -- auto_theme_custom.normal.c.bg = "none"
+        -- auto_theme_custom.inactive.c.bg = "none"
+
+        local opts = {
             options = {
                 theme = auto_theme_custom,
-                globalstatus = false,
-                disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha", "toggleterm", "neo-tree" } },
-                component_separators = { left = "", right = "" },
-                section_separators = { left = "", right = "" },
+                -- theme = "auto",
+                globalstatus = vim.o.laststatus == 3,
+                disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
+                -- section_separators = { "|", "|" },
+                component_separators = "",
             },
             sections = {
-                lualine_a = {
-                    {
-                        function()
-                            return "  "
-                        end,
-                        padding = { left = 0, right = 0 },
-                        color = {},
-                        cond = nil,
-                    },
-                },
-                lualine_b = { "branch" },
+                lualine_a = { { "mode", padding = { left = 1, right = 1 } } },
+                lualine_b = { { "branch", padding = { left = 1, right = 1 } } },
                 lualine_c = {
-                    pyenv,
+                    LazyVim.lualine.root_dir({ icon = "󱉭" }),
+                    { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+                    { LazyVim.lualine.pretty_path(), padding = { left = 0, right = 1 } },
                     -- {
-                    --     "filetype",
-                    --     icon_only = true,
-                    --     separator = "",
-                    --     padding = {
-                    --         left = 1,
-                    --         right = 0,
-                    --     },
+                    --     "navic",
+                    --     color_correction = "dynamic",
+                    --     padding = { left = 1, right = 10 },
                     -- },
-                    { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
-                    {
-                        function()
-                            return require("nvim-navic").get_location()
-                        end,
-                        cond = function()
-                            return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
-                        end,
-                        padding = { left = 1, right = 0 },
-                    },
                 },
                 lualine_x = {
                     {
@@ -156,47 +56,83 @@ return {
                             hint = icons.diagnostics.Hint,
                         },
                     },
-                    lsp,
+                    Snacks.profiler.status(),
                     -- stylua: ignore
-                    -- {
-                    --     function() return require("noice").api.status.command.get() end,
-                    --     cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-                    --     color = fg("Statement")
-                    -- },
-                    -- -- stylua: ignore
-                    -- {
-                    --     function() return require("noice").api.status.mode.get() end,
-                    --     cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-                    --     color = fg("Constant"),
-                    -- },
-                    { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = fg("Special") },
-                    space,
                     {
-                        "filetype",
-                        cond = nil,
-                        padding = { left = 1, right = 1 },
+                        function() return require("noice").api.status.command.get() end,
+                        cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+                        color = function() return { fg = Snacks.util.color("Statement") } end,
                     },
-                    -- {
-                    --   "diff",
-                    --   symbols = {
-                    --     added = icons.git.added,
-                    --     modified = icons.git.modified,
-                    --     removed = icons.git.removed,
-                    --   },
-                    -- },
-                },
-                lualine_y = { { "location" } },
-                lualine_z = {
+                    -- stylua: ignore
                     {
-                        "progress",
-                        fmt = function()
-                            return "%P/%L"
+                        function() return require("noice").api.status.mode.get() end,
+                        cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+                        color = function() return { fg = Snacks.util.color("Constant") } end,
+                    },
+                    -- stylua: ignore
+                    {
+                        function() return "  " .. require("dap").status() end,
+                        cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+                        color = function() return { fg = Snacks.util.color("Debug") } end,
+                    },
+                    -- stylua: ignore
+                    {
+                        require("lazy.status").updates,
+                        cond = require("lazy.status").has_updates,
+                        color = function() return { fg = Snacks.util.color("Special") } end,
+                    },
+                    {
+                        "diff",
+                        symbols = {
+                            added = icons.git.added,
+                            modified = icons.git.modified,
+                            removed = icons.git.removed,
+                        },
+                        source = function()
+                            local gitsigns = vim.b.gitsigns_status_dict
+                            if gitsigns then
+                                return {
+                                    added = gitsigns.added,
+                                    modified = gitsigns.changed,
+                                    removed = gitsigns.removed,
+                                }
+                            end
                         end,
-                        color = {},
                     },
+                },
+                lualine_y = {
+                    { "progress", separator = " ", padding = { left = 1, right = 1 } },
+                },
+                lualine_z = {
+                    { "location", padding = { left = 0, right = 1 } },
+                    -- function()
+                    --   return " " .. os.date("%R")
+                    -- end,
                 },
             },
-            extensions = { "neo-tree" },
+            extensions = { "neo-tree", "lazy", "fzf" },
         }
+
+        -- do not add trouble symbols if aerial is enabled
+        -- And allow it to be overriden for some buffer types (see autocmds)
+        if vim.g.trouble_lualine and LazyVim.has("trouble.nvim") then
+            local trouble = require("trouble")
+            local symbols = trouble.statusline({
+                mode = "symbols",
+                groups = {},
+                title = false,
+                filter = { range = true },
+                format = "{kind_icon}{symbol.name:Normal}",
+                hl_group = "lualine_c_normal",
+            })
+            table.insert(opts.sections.lualine_c, {
+                symbols and symbols.get,
+                cond = function()
+                    return vim.b.trouble_lualine ~= false and symbols.has()
+                end,
+            })
+        end
+        vim.api.nvim_set_hl(0, "StatusLine", { link = "lualine_c_normal" })
+        return opts
     end,
 }

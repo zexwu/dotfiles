@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+set -eu
+
+YABAI=${YABAI:-/opt/homebrew/bin/yabai}
+space=${1:?usage: move-window-to-space SPACE_LABEL}
+
+window_id=$(
+    "$YABAI" -m query --windows --window |
+        /usr/bin/python3 -c 'import json, sys; print(json.load(sys.stdin)["id"])'
+)
+
+"$YABAI" -m window "$window_id" --space "$space"
+"$YABAI" -m space --focus "$space" >/dev/null 2>&1 || true
+"$YABAI" -m window --focus "$window_id" >/dev/null 2>&1 || true

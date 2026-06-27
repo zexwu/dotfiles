@@ -49,6 +49,9 @@ opt.updatetime = 200
 opt.wildmode = "longest:full,full"
 opt.wrap = true
 vim.g.trouble_lualine = true
+opt.wrap = true
+opt.linebreak = true
+opt.breakindent = true
 
 opt.formatoptions:remove({ "c", "r", "o" })
 
